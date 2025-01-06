@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .highlight {
+            background-color: #e7f3fe;
+        }
+    </style>
+    <script>
+        function getRotatingSubject() {
+            const subjects = ['Stocks', 'Novel Read', 'GK', 'Chess'];
+            const currentWeek = new Date().getWeek();
+            return subjects[currentWeek % subjects.length];
+        }
+
+        Date.prototype.getWeek = function() {
+            const oneJan = new Date(this.getFullYear(), 0, 1);
+            const numberOfDays = Math.floor((this - oneJan) / (24 * 60 * 60 * 1000));
+            return Math.ceil((oneJan.getDay() + 1 + numberOfDays) / 7);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const rotatingSubject = getRotatingSubject();
+            document.querySelectorAll('.rotating-subject').forEach(cell => {
+                cell.textContent = rotatingSubject;
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Study Timetable</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>5:00 AM - 5:15 AM</th>
+                <th>5:15 AM - 6:05 AM</th>
+                <th>6:05 AM - 6:45 AM</th>
+                <th>1:00 PM - 2:00 PM</th>
+                <th>Sabbatical</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Monday</td>
+                <td>Tea</td>
+                <td>Yoga</td>
+                <td>Study Angular</td>
+                <td>Study Angular</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>Tea</td>
+                <td>Yoga</td>
+                <td>Study Simplilearn</td>
+                <td>Study Simplilearn</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>Tea</td>
+                <td>Yoga</td>
+                <td class="rotating-subject">Stocks</td>
+                <td class="rotating-subject">Stocks</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td>Tea</td>
+                <td>Yoga</td>
+                <td>Study Angular</td>
+                <td>Study Angular</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>Tea</td>
+                <td>Yoga</td>
+                <td>Study Simplilearn</td>
+                <td>Study Simplilearn</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td>Tea</td>
+                <td>Yoga</td>
+                <td class="rotating-subject">Stocks</td>
+                <td class="rotating-subject">Stocks</td>
+                <td>No</td>
+            </tr>
+            <tr class="highlight">
+                <td>Sunday</td>
+                <td>Tea</td>
+                <td>Yoga</td>
+                <td colspan="2">No Study</td>
+                <td>Yes</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
