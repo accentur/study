@@ -27,22 +27,23 @@
         }
     </style>
     <script>
-        function getRotatingSubject() {
-            const subjects = ['Stocks/MarketWolf/Options', 'Mathematics', 'Block Chain'];
-            const currentWeek = new Date().getWeek();
-            return subjects[currentWeek % subjects.length];
+        function getSubjectByMonth() {
+            const subjects = {
+                0: 'REST API', 1: 'REST API',
+                2: 'Angular', 3: 'Angular',
+                4: 'SaaS',
+                5: 'Webpack',
+                6: 'Stocks', 7: 'Stocks',
+                8: 'Math', 9: 'Math',
+                10: 'Web3/Blockchain', 11: 'Web3/Blockchain'
+            };
+            return subjects[new Date().getMonth()];
         }
 
-        Date.prototype.getWeek = function() {
-            const oneJan = new Date(this.getFullYear(), 0, 1);
-            const numberOfDays = Math.floor((this - oneJan) / (24 * 60 * 60 * 1000));
-            return Math.ceil((oneJan.getDay() + 1 + numberOfDays) / 7);
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
-            const rotatingSubject = getRotatingSubject();
-            document.querySelectorAll('.rotating-subject').forEach(cell => {
-                cell.textContent = rotatingSubject;
+            const currentSubject = getSubjectByMonth();
+            document.querySelectorAll('.dynamic-subject').forEach(cell => {
+                cell.textContent = currentSubject;
             });
         });
     </script>
@@ -65,48 +66,48 @@
                 <td>Monday</td>
                 <td>Tea</td>
                 <td>Yoga</td>
-                <td>Study Angular</td>
-                <td>Study Angular</td>
+                <td class="dynamic-subject"></td>
+                <td class="dynamic-subject"></td>
                 <td>No</td>
             </tr>
             <tr>
                 <td>Tuesday</td>
                 <td>Tea</td>
                 <td>Yoga</td>
-                <td>Study Simplilearn</td>
-                <td>Study Simplilearn</td>
+                <td class="dynamic-subject"></td>
+                <td class="dynamic-subject"></td>
                 <td>No</td>
             </tr>
             <tr>
                 <td>Wednesday</td>
                 <td>Tea</td>
                 <td>Yoga</td>
-                <td class="rotating-subject">Stocks</td>
-                <td class="rotating-subject">Stocks</td>
+                <td class="dynamic-subject"></td>
+                <td class="dynamic-subject"></td>
                 <td>No</td>
             </tr>
             <tr>
                 <td>Thursday</td>
                 <td>Tea</td>
                 <td>Yoga</td>
-                <td>Study Angular</td>
-                <td>Study Angular</td>
+                <td class="dynamic-subject"></td>
+                <td class="dynamic-subject"></td>
                 <td>No</td>
             </tr>
             <tr>
                 <td>Friday</td>
                 <td>Tea</td>
                 <td>Yoga</td>
-                <td>Study Simplilearn</td>
-                <td>Study Simplilearn</td>
+                <td class="dynamic-subject"></td>
+                <td class="dynamic-subject"></td>
                 <td>No</td>
             </tr>
             <tr>
                 <td>Saturday</td>
                 <td>Tea</td>
                 <td>Yoga</td>
-                <td class="rotating-subject">Stocks</td>
-                <td class="rotating-subject">Stocks</td>
+                <td class="dynamic-subject"></td>
+                <td class="dynamic-subject"></td>
                 <td>No</td>
             </tr>
             <tr class="highlight">
